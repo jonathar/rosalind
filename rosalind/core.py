@@ -55,8 +55,4 @@ def reverse_compliment(dna_str):
     Return: The reverse complement sc of s.
     '''
     compliments = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'}
-    rev_comp = []
-    for c in dna_str[::-1]:
-        if c in compliments:
-            rev_comp.append(compliments[c])
-    return ''.join(rev_comp)
+    return ''.join([compliments[c] for c in dna_str[::-1] if c in compliments])
