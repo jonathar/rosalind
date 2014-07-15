@@ -15,7 +15,7 @@ def list_functions():
     return functions
 
 
-def count_nucleotides(str):
+def count_nucleotides(dna_str):
     '''Counts the number of occurences of 'A', 'C', 'G' or 'T' in str. Returns
     a list containing four integers representing the frequencies of the former.
 
@@ -23,12 +23,12 @@ def count_nucleotides(str):
     http://rosalind.info/problems/dna/
     '''
     frequencies = defaultdict(int)
-    for nucleotide in str:
+    for nucleotide in dna_str:
         frequencies[nucleotide] += 1
 
     return '%(A)s %(C)s %(G)s %(T)s' % frequencies
 
-def transcribe_dna_to_rna(str):
+def transcribe_dna_to_rna(dna_str):
     '''An RNA string is a string formed from the alphabet containing 'A', 'C',
     'G', and 'U'.
 
@@ -39,4 +39,24 @@ def transcribe_dna_to_rna(str):
 
     Return: The transcribed RNA string of t.
     '''
-    return str.replace('T', 'U')
+    return dna_str.replace('T', 'U')
+
+
+def reverse_compliment(dna_str):
+    '''In DNA strings, symbols 'A' and 'T' are complements of each other, as
+    are 'C' and 'G'.
+
+    The reverse complement of a DNA string s is the string sc formed by
+    reversing the symbols of s, then taking the complement of each symbol
+    (e.g., the reverse complement of "GTCA" is "TGAC").
+
+    Given: A DNA string s of length at most 1000 bp.
+
+    Return: The reverse complement sc of s.
+    '''
+    compliments = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'}
+    rev_comp = []
+    for c in dna_str[::-1]:
+        if c in compliments:
+            rev_comp.append(compliments[c])
+    return ''.join(rev_comp)
