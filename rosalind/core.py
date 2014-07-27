@@ -100,15 +100,21 @@ def fib_with_k(input_str):
     20444528200
     """
     inputs = input_str.split(' ')
-    n = int(inputs[0])
-    k = int(inputs[1])
+    n, k = int(inputs[0]), int(inputs[1])
 
+    results = {}
     def fib(n, k):
-        if n < 0 or k < 0 or n == 0:
+        params = (n, k)
+
+        if params in results:
+            return results[params]
+        elif n < 0 or k < 0 or n == 0:
             return 0
         elif n ==1:
             return 1
         else:
-            return fib(n=n-1, k=k) + (fib(n=n - 2, k=k) * k)
+            result = fib(n=n-1, k=k) + (fib(n=n - 2, k=k) * k)
+            results[params] = result
+            return result
 
     return fib(n=n, k=k)
