@@ -99,8 +99,7 @@ def fib_with_k(input_str):
     >>> fib_with_k('30 3')
     20444528200
     """
-    inputs = input_str.split(' ')
-    n, k = int(inputs[0]), int(inputs[1])
+    n, k = [int(i) for i in input_str.split(' ')]
 
     results = {}
     def fib(n, k):
@@ -113,7 +112,7 @@ def fib_with_k(input_str):
         elif n ==1:
             return 1
         else:
-            result = fib(n=n-1, k=k) + (fib(n=n - 2, k=k) * k)
+            result = fib(n=n - 1, k=k) + (fib(n=n - 2, k=k) * k)
             results[params] = result
             return result
 
